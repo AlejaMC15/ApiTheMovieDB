@@ -4,7 +4,6 @@ const Home = ({ dataApi }) => {
   const [getGender, setGetGender] = useState([]);
   const [genderNameList, setGenderNameList] = useState('');
   const [detailsMovies, setDetailsMovies] = useState([]);
-  const [idMovie, setIdMovie] = useState([]);
   const [nameActress, setNameActress] = useState([]);
 
   const url =
@@ -41,17 +40,13 @@ const Home = ({ dataApi }) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setIdMovie(data.cast);
+        const nameList = [];
+        data.cast &&
+          data.cast.map((name) => {
+            nameList.push(name.name);
+          });
+        setNameActress(nameList.toString());
       });
-  };
-
-  const getNameActress = (idMovie) => {
-    const nameList = [];
-    idMovie &&
-      idMovie.map((name) => {
-        nameList.push(name.name);
-      });
-    setNameActress(nameList.toString());
   };
 
   const getNameGender = (idList) => {
@@ -73,7 +68,6 @@ const Home = ({ dataApi }) => {
           <button
             key={index}
             onClick={() => {
-              getNameActress(idMovie);
               getNameGender(item.genre_ids);
               setDetailsMovies(item);
               listIdMovie(item.id);
