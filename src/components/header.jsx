@@ -6,14 +6,7 @@ const Header = () => {
       <nav className="navbar navbar-light bg-secondary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            <img
-              src="https://image.tmdb.org/t/p/w500/srYya1ZlI97Au4jUYAktDe3avyA.jpg"
-              alt=""
-              width="30"
-              height="24"
-              className="d-inline-block align-top "
-            />
-            Movies Vtex
+            <h1>Movies Vtex</h1>
           </a>
         </div>
       </nav>

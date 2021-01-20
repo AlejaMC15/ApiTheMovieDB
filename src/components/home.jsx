@@ -5,7 +5,7 @@ const Home = ({ dataApi }) => {
   const [genderNameList, setGenderNameList] = useState('');
   const [detailsMovies, setDetailsMovies] = useState([]);
   const [idMovie, setIdMovie] = useState([]);
-  const [namesActress, setNameActress] = useState([]);
+  const [nameActress, setNameActress] = useState([]);
 
   const url =
     'https://api.themoviedb.org/3/genre/movie/list?api_key=40b79735075518fbb44c19e5036c4a4b';
@@ -45,15 +45,13 @@ const Home = ({ dataApi }) => {
       });
   };
 
-  const getCast = (idMovie) => {
-    if (idMovie.length > 0) {
-      const nameList = [];
-      idMovie &&
-        idMovie.map((name) => {
-          nameList.push(name.name);
-        });
-      setNameActress(nameList.toString());
-    }
+  const getNameActress = (idMovie) => {
+    const nameList = [];
+    idMovie &&
+      idMovie.map((name) => {
+        nameList.push(name.name);
+      });
+    setNameActress(nameList.toString());
   };
 
   const getNameGender = (idList) => {
@@ -68,8 +66,6 @@ const Home = ({ dataApi }) => {
     setGenderNameList(nameList.toString());
   };
 
-  console.log(idMovie);
-
   return (
     <div className="m-5">
       {dataApi.map((item, index) => {
@@ -77,7 +73,7 @@ const Home = ({ dataApi }) => {
           <button
             key={index}
             onClick={() => {
-              getCast(idMovie);
+              getNameActress(idMovie);
               getNameGender(item.genre_ids);
               setDetailsMovies(item);
               listIdMovie(item.id);
@@ -129,7 +125,7 @@ const Home = ({ dataApi }) => {
             <p>{detailsMovies.title}</p>
             <p>Gender: {genderNameList}</p>
             <p>Date: {detailsMovies.release_date}</p>
-            <p className="m-3">Actress: {namesActress}</p>
+            <p className="m-3">Actress: {nameActress}</p>
 
             <div className="modal-footer">
               <button
