@@ -105,7 +105,7 @@ const Home = ({ dataApi }) => {
           </ul>
         </nav>
       </div>
-      //Modal----------
+      //Modal---------
       <div
         className="modal fade"
         id="exampleModal"
